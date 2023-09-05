@@ -1,2 +1,2 @@
 #!/bin/bash
-expe $BREATH ^ $LOVE
+expr $BREATH \* $LOVE
