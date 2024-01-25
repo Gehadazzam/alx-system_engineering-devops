@@ -3,7 +3,7 @@
 
 for filename in *
 do
-    if [[ $filename != .* && $filename == *-* ]]
+    if [[ $filename != .* ]]
     then
         echo "${filename#*-}"
     fi
