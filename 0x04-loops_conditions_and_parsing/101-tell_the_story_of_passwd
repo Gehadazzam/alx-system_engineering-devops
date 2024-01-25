@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-#Bash script that displays formatted content of /etc/passwd
+#displays the content of the file /etc/passwd, using the while loop + IFS.
 
-IFS=$'\n'
-while IFS= read -r line
+while IFS=: read -r USERNAME PASSWORD User_ID_Info GROUP_ID GECOS HOME_DIRECTORY COMMAND
 do
-    IFS=":" read -r ARRAY <<< "$line"
-    echo "The user ${ARRAY[0]} is part of the ${ARRAY[4]} gang, lives in ${ARRAY[5]}, and rides ${ARRAY[6]}/${ARRAY[7]}. ${ARRAY[2]}'s place is protected by the passcode ${ARRAY[1]}, more info about the user here: ${ARRAY[0]}"
+    echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $HOME_DIRECTORY and rides $COMMAND. $User_ID_Info's place is protected by the passcode $PASSWORD, more info about the user here: $GECOS"
 done < "/etc/passwd"
