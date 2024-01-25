@@ -13,7 +13,7 @@ do
         echo "bad luck from Japan"
         ;;
         17)
-        echo $num
+        echo $num                                                                                                                                                                                                                       
         echo "bad luck from Italy"
         ;;
         *)
