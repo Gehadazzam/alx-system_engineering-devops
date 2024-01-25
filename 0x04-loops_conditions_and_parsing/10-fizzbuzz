@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 #Bash script that displays numbers from 1 to 100.
-
-num=1
-
-while [ $num -le 100 ]; do
-    if [ $((num%15)) = 0 ]; then
+for ((num = 1; num <= 100; num++))
+do
+    if ((num % 15 == 0)); then
         echo "FizzBuzz"
-    elif [ $((num%5)) = 0 ]; then
+    elif ((num % 5 == 0)); then
         echo "Fizz"
-    elif [ $((num%3)) = 0 ]; then
+    elif ((num % 3 == 0)); then
         echo "Buzz"
     else
         echo "$num"
     fi
-    ((num++))
 done
