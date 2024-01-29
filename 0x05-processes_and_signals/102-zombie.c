@@ -1,5 +1,5 @@
 #include <sys/types.h>
-#include<stdio.h>
+#include <stdio.h>
 #include "unistd.h"
 /**
 *infinite_while - infiniteloop
@@ -17,10 +17,10 @@ int infinite_while(void)
 *main - entry main
 *Return: always 0
 */
-int main()
+int main(void)
 {
-	pid_t proc_id;
-	int count = 1;
+pid_t proc_id;
+int count = 1;
 	while (count <= 5)
 {
 		proc_id = fork();
