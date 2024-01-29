@@ -1,1 +1,25 @@
 #!/usr/bin/env bash
+#Write a Bash script that:
+
+#Creates the file /var/run/myscript.pid containing its PID
+echo $$ > /var/run/myscript.pid
+
+#Deletes the file /var/run/myscript.pid and terminates itself when receiving a SIGQUIT or SIGTERM signal
+cleanup() {
+    rm /var/run/myscript.pid
+    exit 0
+}
+
+#Displays I hate the kill command when receiving a SIGTERM signal
+trap 'echo "I hate the kill command"; cleanup' SIGTERM
+
+#Displays Y U no love me?! when receiving a SIGINT signal
+trap 'echo "Y U no love me?!"; cleanup' SIGINT
+trap 'cleanup' SIGQUIT
+
+#Displays To infinity and beyond indefinitely
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
