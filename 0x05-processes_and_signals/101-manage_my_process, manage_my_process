@@ -1,1 +1,30 @@
 #!/usr/bin/env bash
+
+case $1 in
+    start)
+        if pgrep -x "manage_my_process" > /dev/null
+        then
+            echo "manage_my_process is already running"
+        else
+            ./manage_my_process &
+            echo $!>/var/run/my_process.pid
+            echo "manage_my_process started"
+        fi
+        ;;
+    stop)
+        if [ ! -f /var/run/my_process.pid ]; then
+            echo "manage_my_process is not running"
+        else
+            kill "$(cat /var/run/my_process.pid)"
+            rm /var/run/my_process.pid
+            echo "manage_my_process stopped"
+        fi
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac
