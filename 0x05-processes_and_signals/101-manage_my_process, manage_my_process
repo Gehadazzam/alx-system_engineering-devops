@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#general minimum set of instructions is: start, restart and stop
 case $1 in
     start)
         if pgrep -x "manage_my_process" > /dev/null
