@@ -1,8 +1,6 @@
-# create a file in /tmp.
-file { '/tmp/school':
-    ensure  => 'file',
-    mode    => '0744',
-    owner   => 'www-data',
-    group   => 'www-data',
-    content => 'I love Puppet',
+# kill process
+exec { 
+    'kill':
+    command  =>  'pkill -f killmenow',
+    path     =>  ['/usr/bin', '/usr/sbin']
 }
