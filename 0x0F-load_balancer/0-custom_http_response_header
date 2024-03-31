@@ -31,19 +31,11 @@ echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
 sudo sed -i '27i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
 
 #x-serverd
-echo 'server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    server_name _;
-
-    location / {
-        proxy_pass http://localhost:8000;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Served-By $hostname;
-    }
-}' | sudo tee /etc/nginx/sites-available/default > /dev/null
+HEADER="\\\n\tadd_header X-Served-By $(hostname);\n"
+FIND=$(grep "X-Server-by" /etc/nginx/sites-available/default)
+if [[ -z $FIND ]]; then
+    sed -i "23i $HEADER" /etc/nginx/sites-available/default
+fi
 
 
 #restart to update the configuration
