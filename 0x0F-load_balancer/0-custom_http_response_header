@@ -31,6 +31,7 @@ echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
 sudo sed -i '27i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
 
 #x-serverd
+HOST_NAME=$(hostname)
 HEADER="\\\n\tadd_header X-Served-By $(hostname);\n"
 FIND=$(grep "X-Server-by" /etc/nginx/sites-available/default)
 if [[ -z $FIND ]]; then
