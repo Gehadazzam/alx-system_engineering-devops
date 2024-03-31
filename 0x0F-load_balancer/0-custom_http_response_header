@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+#configure the web2 
+
+#update before install nignix
+sudo apt-get update -y
+
+#install nignix
+sudo apt-get install nginx -y
+
+#start 
+sudo service nginx start
+
+#firewall stop
+sudo ufw allow 'Nginx HTTP'
+
+#change owner and mode
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+#get the file
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+#print hello
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+
+#redirect
+sudo sed -i '26i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+#error
+echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
+sudo sed -i '27i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
+
+#x-serverd
+HOST_NAME=$(hostname)
+HEADER="\\\n\tadd_header X-Served-By $HOST_NAME;\n"
+FIND=$(grep "X-Server-by" /etc/nginx/sites-available/default)
+if [[ -z $FIND ]]; then
+    sed -i "23i $HEADER" /etc/nginx/sites-available/default
+fi
+
+
+#restart to update the configuration
+sudo service nginx restart
