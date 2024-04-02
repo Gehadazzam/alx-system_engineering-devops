@@ -30,8 +30,8 @@ frontend http_front
 
 backend http_back
     balance roundrobin
-    server 517566-web-01 52.3.251.54-web-01:80 check
-    server 517566-web-02 54.90.13.191-web-02:80 check
+    server 517566-web-01 52.3.251.54:80 check
+    server 517566-web-02 54.90.13.191:80 check
 EOF
 
 # Restart HAProxy to apply changes
