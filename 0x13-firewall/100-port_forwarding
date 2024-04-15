@@ -10,7 +10,7 @@ ENABLED=yes
 # See 'man ufw' for details.
 LOGLEVEL=low
 # Set the default forward policy to DROP, which means to drop all forwarded packets by default
-DEFAULT_FORWARD_POLICY="DROP"
+DEFAULT_FORWARD_POLICY="ACCEPT"
 
 # Set the default input policy to ACCEPT, which means to allow all incoming packets by default
 DEFAULT_INPUT_POLICY="ACCEPT"
