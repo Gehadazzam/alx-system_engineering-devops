@@ -1,0 +1,19 @@
+# /etc/ufw/ufw.conf
+#
+#
+
+# Set to yes to start on boot. If setting this remotely, be sure to add a rule
+# to allow your remote connection before starting ufw. Eg: 'ufw allow 22/tcp'
+ENABLED=yes
+
+# Please use the 'ufw' command to set the loglevel. Eg: 'ufw logging medium'.
+# See 'man ufw' for details.
+LOGLEVEL=low
+# Set the default forward policy to DROP, which means to drop all forwarded packets by default
+DEFAULT_FORWARD_POLICY="DROP"
+
+# Set the default input policy to ACCEPT, which means to allow all incoming packets by default
+DEFAULT_INPUT_POLICY="ACCEPT"
+
+# Set the default output policy to ACCEPT, which means to allow all outgoing packets by default
+DEFAULT_OUTPUT_POLICY="ACCEPT"
