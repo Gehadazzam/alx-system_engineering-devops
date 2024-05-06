@@ -8,20 +8,26 @@ using a given employee ID and a REST API.
 import requests
 import sys
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
+
     employee_id = sys.argv[1]
     employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     response = requests.get(employee_url)
+
     if response.status_code == 200:
         employee_data = response.json()
         name = employee_data.get("name", "")
     else:
         print("Failed to fetch employee data")
+        sys.exit(1)
+
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
     todos_response = requests.get(url)
+
     if todos_response.status_code == 200:
         todos = todos_response.json()
         done_tasks = [todo for todo in todos if todo.get("completed")]
