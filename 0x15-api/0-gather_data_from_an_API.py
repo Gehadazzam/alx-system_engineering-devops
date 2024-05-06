@@ -35,9 +35,9 @@ if __name__ == "__main__":
         count_done = len(done_tasks)
 
         print(f"Employee {name} is done with tasks ({count_done}/{tasks}):")
-        print(f"\t{name}: {count_done}")
-        print(f"\tTOTAL: {tasks}")
+        print(f"\t {name}: {count_done}")
+        print(f"\t TOTAL: {tasks}")
         for task in done_tasks:
-            print(f"\t\t{task['title']}")
+            print(f"\t {task['title'].lstrip()}")
     else:
         print("Failed to fetch employee's TODO list")
