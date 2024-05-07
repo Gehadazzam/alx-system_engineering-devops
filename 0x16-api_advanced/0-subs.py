@@ -11,7 +11,7 @@ import requests as rq
 def number_of_subscribers(subreddit):
     """If not a valid subreddit, return 0."""
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {"User-Agent": "Custom"}
     response = rq.get(url, headers=headers)
 
