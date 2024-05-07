@@ -10,7 +10,7 @@ def top_ten(subreddit):
     """If not a valid subreddit, print None"""
 
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": "Custom"}
     response = rq.get(url, headers=headers)
 
     if response.status_code != 200:
