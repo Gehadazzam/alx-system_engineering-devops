@@ -8,7 +8,7 @@ the function should return None."""
 import requests as rq
 
 
-def recurse(subreddit, hot_list=[], counter=""):
+def recurse(subreddit, hot_list=[], counter=None):
     """If not a valid subreddit, return None."""
 
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
