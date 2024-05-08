@@ -1,17 +1,8 @@
 # Puppet manifest to fix Apache 500 error
 
 # Ensure the configuration file exists
-file { '/etc/apache2/myconfig.conf':
-  ensure => present,
-  content => "Sample configuration content\n",
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-}
+exec{'fix-wordpress':
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+  path    => '/usr/local/bin/:/bin/'
 
-# Restart Apache service after fixing
-service { 'apache2':
-  ensure => running,
-  enable => true,
-  require => File['/etc/apache2/myconfig.conf'],
 }
